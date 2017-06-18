@@ -34,7 +34,11 @@ const resultsReducer = (state = {}, action) => {
         case ADD_RESULT:
             return {
                 ...state,
-                [action.url]: { ...state[action.url], status: `done in ${action.end - action.start} ms` }
+                [action.url]: { 
+                    ...state[action.url], 
+                    status: `done in ${action.end - action.start} ms`,
+                    result: action.result
+                }
             }
         default:
             return state

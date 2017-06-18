@@ -1,0 +1,6 @@
+seo-inspector:
+  build: .
+  environment:
+    NODE_ENV: production
+  ports:
+    - '6000:3000'

@@ -1,0 +1,10 @@
+seo-inspector:
+  build: .
+  command: npm run dev
+  environment:
+    NODE_ENV: development
+  ports:
+    - '5301:3000'
+  volumes:
+    - .:/home/spokeo/seo-inspector
+    - /home/spokeo/seo-inspector/node_modules
