@@ -5,7 +5,8 @@ import { Module } from '../components/layout'
 const Results = ({ url, results }) => (
   <Module>
     <div>{url}</div>
-    <pre>{results && JSON.stringify(results)}</pre>
+    <pre>{results && JSON.stringify({...results, result: undefined})}</pre>
+    <pre>{results && results.result}</pre>
   </Module>
 )
 

@@ -2,7 +2,10 @@
 
 const Koa = require('koa')
 const Router = require('koa-router')
+const serve = require('koa-static')
+const cors = require('koa-cors')
 const qs = require('qs')
+const axios = require('axios')
 const middleware = require('./src/koa/middleware')
 
 const app = new Koa()
@@ -12,7 +15,7 @@ const app = new Koa()
  ***********************************************************/
 
 app.on('error', (err, ctx) => {
-    console.error('ERROR >>', ctx.status, err, err.stack)
+  console.error('ERROR >>', ctx.status, err, err.stack)
 })
 
 /***********************************************************
@@ -23,28 +26,34 @@ app.use(middleware.HandleError)
 app.use(middleware.AddResponseTime)
 app.use(middleware.AddVersion)
 app.use(middleware.LogRequest)
+app.use(cors())
 
 /***********************************************************
   register routes
  ***********************************************************/
 
-const fetchUrl = async (ctx, next) => {
-    let params = qs.parse(ctx.req._parsedUrl.query)
-    ctx.response.body = params
-    await next
+const fetchUrl = async ({ url }) => {
+  console.log(`fetching url ${url}...`)
+  let response = await axios.get(url)
+  return response.data
 }
 
 const router = new Router()
-router.get('/api/fetch', fetchUrl)
+router.get('/api/fetch', async (ctx, next) => {
+  let params = qs.parse(ctx.req._parsedUrl.query)
+  ctx.body = await fetchUrl(params)
+  await next
+})
 
 app.use(router.routes())
 app.use(router.allowedMethods())
+app.use(serve(__dirname + '/build'))
 
 /***********************************************************
   start server
  ***********************************************************/
 
-const port = process.env.PORT || 5301 
+const port = process.env.PORT || 5301
 
 app.listen(port)
 
