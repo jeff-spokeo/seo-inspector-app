@@ -8,7 +8,7 @@ import App from './components/App'
 import registerServiceWorker from './registerServiceWorker'
 import './assets/index.css'
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 let store = createStore(
     seoInspectorApp,
     composeEnhancers(applyMiddleware(thunk))

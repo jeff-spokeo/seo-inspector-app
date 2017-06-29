@@ -1,4 +1,3 @@
-'use strict'
 
 exports.HandleError = async (ctx, next) => {
     try {
@@ -19,7 +18,7 @@ exports.AddResponseTime = async (ctx, next) => {
 
 exports.AddVersion = async (ctx, next) => {
     await next()
-    ctx.set('X-Version', `${require('../../package.json').version}`)
+    ctx.set('X-Version', `${require('../../../package.json').version}`)
 }
 
 exports.LogRequest = async (ctx, next) => {

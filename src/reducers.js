@@ -19,13 +19,14 @@ const selectedUrlReducer = (state = null, action) => {
     }
 }
 
+let domIndex = 0
 const resultsReducer = (state = {}, action) => {
     switch (action.type) {
         case INSPECT_URLS:
             let newState = { ...state }
             action.urls.forEach(url => {
                 if (newState[url] === undefined) {
-                    newState[url] = { url, status: 'pending' }
+                    newState[url] = { id: `url-${++domIndex}`, url, status: 'pending' }
                 } else {
                     newState[url].status = 'pending'
                 }

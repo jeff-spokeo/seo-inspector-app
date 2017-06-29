@@ -6,11 +6,17 @@ import { Module } from '../components/layout'
 
 const AddUrls = ({ inspectUrls }) => {
   let input
-  let defaultUrls = ['https://www.spokeo.com', 'https://www.spokeo.com/John-Smith']
+  let defaultUrls = [
+    'https://www.spokeo.com',
+    'https://www.spokeo.com/John-Smith',
+    'https://www.spokeo.com/John-Smith/California',
+    'https://www.spokeo.com/John-Smith/California/Sacramento/p1362236121'
+  ]
+
   return (
     <Module>
-      <textarea style={{width:'100%', maxWidth: '700px', height:200}} ref={node => input = node} 
-        placeholder="Enter URL(s), one per line" 
+      <textarea style={{ width: '100%', maxWidth: '700px', height: 200 }} ref={node => input = node}
+        placeholder="Enter URL(s), one per line"
         defaultValue={defaultUrls.join('\n')} />
       <button onClick={() => input.value && inspectUrls(input.value.trim().split('\n'))}>Inspect Urls</button>
     </Module>

@@ -2,17 +2,18 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Module } from '../components/layout'
 
-const Results = ({ url, results }) => (
+const Results = ({ url, status, result }) => (
   <Module>
-    <div>{url}</div>
-    <pre>{results && JSON.stringify({...results, result: undefined})}</pre>
-    <pre>{results && results.result}</pre>
+    <div>
+      {url} 
+      { status && <span style={{ fontSize: '.7em', color: 'grey', marginLeft: '5px' }}>({status})</span> }
+    </div>
+    <pre>{result}</pre>
   </Module>
 )
 
 export default connect(
   state => ({
-    url: state.selectedUrl,
-    results: state.results[state.selectedUrl]
+    ...state.results[state.selectedUrl]
   })
 )(Results)

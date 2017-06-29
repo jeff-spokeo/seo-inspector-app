@@ -11,17 +11,15 @@ class App extends Component {
       <div className="App">
         <Header title="Spokeo SEO Inspector" />
         <div className="App-intro">
-          <Column width='30%'>
+          <Column width='25%'>
             <AddUrls />
-          </Column>
-          <Column width='30%'>
             <Urls />
           </Column>
-          <Column width='40%'>
+          <Column width='75%'>
             <Results />
           </Column>
         </div>
-      </div>
+      </div>      
     )
   }
 }

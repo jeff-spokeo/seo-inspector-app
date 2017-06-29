@@ -6,7 +6,7 @@ const serve = require('koa-static')
 const cors = require('koa-cors')
 const qs = require('qs')
 const axios = require('axios')
-const middleware = require('./src/koa/middleware')
+const middleware = require('./src/api/koa/middleware')
 
 const app = new Koa()
 

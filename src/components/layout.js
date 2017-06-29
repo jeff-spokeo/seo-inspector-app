@@ -19,3 +19,7 @@ export const Module = ({ width, children }) => (
         {children}
     </div>
 )
+
+export const HiddenDom = ({ id, children }) => (
+    <pre id={id} style={{display:'none'}}>{children}</pre>
+)
